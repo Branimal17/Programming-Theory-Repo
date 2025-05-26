@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput;
     private Animator animator;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(horizontalInput, 0f, verticalInput);
-        transform.Translate(move * movementSpeed * Time.deltaTime, Space.World);
+        transform.Translate(move * movementSpeed * Time.deltaTime, Space.Self);
 
         // Calculate speed (0 = idle, 1 = max input)
         float speed = move.magnitude;
