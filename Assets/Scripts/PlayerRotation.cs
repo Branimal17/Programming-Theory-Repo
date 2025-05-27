@@ -1,19 +1,26 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
-    public Transform cameraTransform;
-    public float rotationSpeed = 10f;
+    public float mouseSensitivity = 3f;
+    public Transform player; // Root object (what turns left/right)
+    public Transform cameraTarget; // The "Follow" target used by Cinemachine
+
+    float verticalAngle = 0f;
 
     void Update()
     {
-        Vector3 direction = cameraTransform.forward;
-        direction.y = 0f;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        }
+        // Rotate player horizontally
+        player.Rotate(Vector3.up * mouseX);
+
+        // Clamp vertical camera angle
+        verticalAngle -= mouseY;
+        verticalAngle = Mathf.Clamp(verticalAngle, -45f, 75f);
+
+        // Apply vertical rotation to camera target (Cinemachine follows this)
+        cameraTarget.localRotation = Quaternion.Euler(verticalAngle, 0f, 0f);
     }
 }

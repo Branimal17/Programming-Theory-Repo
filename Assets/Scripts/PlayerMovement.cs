@@ -23,13 +23,27 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(horizontalInput, 0f, verticalInput);
-        transform.Translate(move * movementSpeed * Time.deltaTime, Space.Self);
+        // Get camera's forward and right, flattened to the ground
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
 
-        // Calculate speed (0 = idle, 1 = max input)
-        float speed = move.magnitude;
+        camForward.y = 0f;
+        camRight.y = 0f;
 
-        // Update Blend Tree parameter (add smoothing if needed)
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // Combine input with camera directions
+        Vector3 moveDirection = camForward * verticalInput + camRight * horizontalInput;
+
+        // Move in world space
+        transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.World);
+
+
+
+        // Animation speed
+        float speed = moveDirection.magnitude;
         animator.SetFloat("Speed_f", speed, 0.1f, Time.deltaTime);
     }
+
 }
