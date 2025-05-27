@@ -458,7 +458,7 @@ Transform:
   m_GameObject: {fileID: 1331947487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52, y: 2.8000002, z: -15.309999}
+  m_LocalPosition: {x: 1.52, y: 4.37, z: -15.309999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -486,7 +486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f147a01ef442b2345a3546109476c690, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f147a01ef442b2345a3546109476c690, type: 3}
       propertyPath: m_LocalPosition.z
@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 1819058942}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1509,7 +1509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ad9dee4df2a3b4a984ec500d216250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 7
   movementSpeed: 5
+  isOnGround: 1
 --- !u!65 &2121334468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1539,7 +1541,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121334464}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

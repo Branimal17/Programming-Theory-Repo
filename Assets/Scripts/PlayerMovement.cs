@@ -3,15 +3,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public float jumpForce = 12;
     public float movementSpeed = 5;
     private float horizontalInput;
     private float verticalInput;
+    public bool isOnGround = true;
+
+    private Rigidbody rb;
     private Animator animator;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -44,6 +50,26 @@ public class PlayerMovement : MonoBehaviour
         // Animation speed
         float speed = moveDirection.magnitude;
         animator.SetFloat("Speed_f", speed, 0.1f, Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+    }
+
+
+
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isOnGround = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+        }
     }
 
 }
