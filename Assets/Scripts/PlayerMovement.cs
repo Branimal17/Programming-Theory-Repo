@@ -8,7 +8,10 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5;
     private float horizontalInput;
     private float verticalInput;
-    public bool isOnGround = true;
+    public bool isGrounded = true;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    public Transform groundCheck;
 
     private Rigidbody rb;
     private Animator animator;
@@ -51,25 +54,27 @@ public class PlayerMovement : MonoBehaviour
         float speed = moveDirection.magnitude;
         animator.SetFloat("Speed_f", speed, 0.1f, Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        animator.SetBool("Grounded", isGrounded);
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
     }
-
+    private void OnDrawGizmosSelected()
+    {
+       
+    }
 
 
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isOnGround = false;
+        isGrounded = false;
+        animator.SetTrigger("Jump_trig");
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isOnGround = true;
-        }
-    }
+   
 
 }
