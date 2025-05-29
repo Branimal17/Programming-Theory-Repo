@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e858762c46e2324fab7c43b2915fb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 100
+  rotateSpeed: 1000
 --- !u!1 &3677175539161016683
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +110,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5660808484179597396}
   - component: {fileID: 8438890786240344140}
+  - component: {fileID: -4967068706499040951}
   - component: {fileID: 5426487016758540405}
+  - component: {fileID: -4008389743981290294}
   m_Layer: 0
   m_Name: Circle Enemy
   m_TagString: Untagged
@@ -157,6 +159,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.8602583
   m_Center: {x: -0.05550909, y: -1.0121658, z: 0}
+--- !u!54 &-4967068706499040951
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677175539161016683}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!114 &5426487016758540405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +196,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebdb60c637a18240904e3dbda9dbd33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4008389743981290294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677175539161016683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892b396868b5571478a8ad367f7bffcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6018876086638077037

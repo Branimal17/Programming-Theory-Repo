@@ -18,7 +18,7 @@ public class PlayerRotation : MonoBehaviour
 
         // Clamp vertical camera angle
         verticalAngle -= mouseY;
-        verticalAngle = Mathf.Clamp(verticalAngle, -45f, 85f);
+        verticalAngle = Mathf.Clamp(verticalAngle, -80f, 85f);
 
         // Apply vertical rotation to camera target (Cinemachine follows this)
         cameraTarget.localRotation = Quaternion.Euler(verticalAngle, 0f, 0f);
