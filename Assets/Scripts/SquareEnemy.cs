@@ -6,7 +6,7 @@ public class SquareEnemy : Enemy
     void Start()
     {
         moveSpeed = 2.5f;
-        health = 2;
+        health = 15;
     }
 
     // Update is called once per frame

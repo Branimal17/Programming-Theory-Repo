@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     private Vector3[] squareSpawnVectors = {
         new Vector3(-10, 2, 10),
         new Vector3(15, 2, 10),
-        new Vector3(-10, 2, -12), 
+        new Vector3(-10, 2, -12),
         new Vector3(15, 2, -12) };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,22 +27,27 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnRandomEnemy()
     {
-        i = Random.Range(0, enemies.Length);
 
-        switch (i)
+        if (!GameManager.instance.isGameOver)
         {
-            case 0:
-                SpawnSquare(i);
-                break;
+            i = Random.Range(0, enemies.Length);
 
-            case 1:
-                SpawnCircle(i);
-                break;
+            switch (i)
+            {
+                case 0:
+                    SpawnSquare(i);
+                    break;
 
-            default:
-                break;
+                case 1:
+                    SpawnCircle(i);
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
+
 
     void SpawnSquare(int i)
     {

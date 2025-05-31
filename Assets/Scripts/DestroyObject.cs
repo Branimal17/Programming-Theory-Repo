@@ -22,6 +22,10 @@ public class DestroyObject : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ceiling"))
         {
             Destroy(gameObject);
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.livesRemaining--;
+            }
         }
     }
 

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float jumpForce = 12;
     public float movementSpeed = 5;
     private float horizontalInput;
@@ -13,8 +12,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
 
+
     private Rigidbody rb;
     private Animator animator;
+    public AudioSource audioSource;
+    public AudioClip gunShot;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = camForward * verticalInput + camRight * horizontalInput;
 
         // Move in world space
-        transform.Translate(moveDirection * movementSpeed * Time.deltaTime, Space.World);
+        transform.Translate(movementSpeed * Time.deltaTime * moveDirection, Space.World);
 
 
 
@@ -62,12 +64,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-       
-    }
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
+    }
 
     void Jump()
     {
@@ -75,6 +77,30 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = false;
         animator.SetTrigger("Jump_trig");
     }
-   
+
+    void Shoot()
+    {
+        if (audioSource != null && gunShot != null)
+        {
+            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.PlayOneShot(gunShot);
+        }
+
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            Debug.Log(hit.collider.name);
+
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage();
+            }
+
+        }
+    }
+
 
 }
