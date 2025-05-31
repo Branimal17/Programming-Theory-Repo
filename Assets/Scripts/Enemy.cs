@@ -5,12 +5,15 @@ public class Enemy : MonoBehaviour
 {
 
     private int m_Health = 10;
+
+    //Encapsulation
     protected int Health
     {
         get { return m_Health; }
         set { m_Health = value; }
     }
 
+    //Encapsulation
     private float m_MoveSpeed;
     protected float MoveSpeed { get => m_MoveSpeed; set => m_MoveSpeed = value; }
 

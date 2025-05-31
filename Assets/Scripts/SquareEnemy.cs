@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//Inheritance
 public class SquareEnemy : Enemy
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,6 +16,7 @@ public class SquareEnemy : Enemy
         Move();
     }
 
+    //Polymorphism
     public override void Move()
     {
         transform.Translate(Vector3.up * MoveSpeed * Time.deltaTime, Space.Self);
