@@ -5,7 +5,7 @@ public class CircleEnemy : Enemy
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moveSpeed = 7.5f;   
+        MoveSpeed = 7.5f;   
     }
 
     // Update is called once per frame

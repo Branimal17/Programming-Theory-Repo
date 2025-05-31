@@ -5,8 +5,8 @@ public class SquareEnemy : Enemy
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moveSpeed = 2.5f;
-        health = 15;
+        MoveSpeed = 2.5f;
+        Health = 15;
     }
 
     // Update is called once per frame
@@ -17,6 +17,6 @@ public class SquareEnemy : Enemy
 
     public override void Move()
     {
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime, Space.Self);
+        transform.Translate(Vector3.up * MoveSpeed * Time.deltaTime, Space.Self);
     }
 }

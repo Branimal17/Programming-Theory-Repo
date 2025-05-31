@@ -3,36 +3,31 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Enemy : MonoBehaviour
 {
-    protected int health = 10;
-    protected float moveSpeed;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private int m_Health = 10;
+    protected int Health
     {
-
+        get { return m_Health; }
+        set { m_Health = value; }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    private float m_MoveSpeed;
+    protected float MoveSpeed { get => m_MoveSpeed; set => m_MoveSpeed = value; }
 
     public virtual void Move()
     {
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime, Space.Self);
+        transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime, Space.Self);
     }
 
     public virtual void TakeDamage()
     {
-        health -= 5;
-        if (health <= 0)
+        Health -= 5;
+        if (Health <= 0)
         {
             Destroy(gameObject);
-            if (GameManager.instance != null)
+            if (GameManager.Instance != null)
             {
-                GameManager.instance.score++;
+                GameManager.Instance.score++;
             }
         }
     }

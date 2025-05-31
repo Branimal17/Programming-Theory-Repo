@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     void SpawnRandomEnemy()
     {
 
-        if (!GameManager.instance.isGameOver)
+        if (!GameManager.Instance.isGameOver)
         {
             i = Random.Range(0, enemies.Length);
 
